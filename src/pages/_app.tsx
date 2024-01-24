@@ -1,6 +1,18 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import LayoutContainer from "@/layout/containers/LayoutContainer";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+type Props = {
+  pageProps: any;
+  Component: any;
+};
+export default function App({ Component, pageProps }: Props) {
+  const getLayout =
+    Component.getLayout ||
+    ((page: any) => <LayoutContainer>{page}</LayoutContainer>);
+  return getLayout(
+    <>
+      <Component {...pageProps} />
+    </>
+  );
 }
