@@ -38,16 +38,16 @@ const Device = () => {
                   №
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Овог
+                  Төхөөрөмжийн дугаар
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Нэр
+                  Төхөөрөмжийн нэр
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  И-мэйл хаяг
+                  Төрөл
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Утасны дугаар
+                  Үнэ
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Үйлдлүүд
@@ -59,46 +59,10 @@ const Device = () => {
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900">
                   1
                 </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />
-                    <FontAwesomeIcon
-                      onClick={() => openDelete()}
-                      icon={faTrash}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-slate-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  1
-                </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />
-                    <FontAwesomeIcon
-                      onClick={() => openDelete()}
-                      icon={faTrash}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-slate-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  1
-                </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
+                <td className="px-6 py-4">4040</td>
+                <td className="px-6 py-4">pc</td>
+                <td className="px-6 py-4">ЦБ</td>
+                <td className="px-6 py-4">450000</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
                     <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />

@@ -38,10 +38,7 @@ const Organization = () => {
                   №
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Овог
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Нэр
+                  Байгууллагын нэр
                 </th>
                 <th scope="col" className="px-6 py-3">
                   И-мэйл хаяг
@@ -59,44 +56,7 @@ const Organization = () => {
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900">
                   1
                 </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />
-                    <FontAwesomeIcon
-                      onClick={() => openDelete()}
-                      icon={faTrash}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-slate-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  1
-                </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />
-                    <FontAwesomeIcon
-                      onClick={() => openDelete()}
-                      icon={faTrash}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-slate-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  1
-                </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
+                <td className="px-6 py-4">ICT</td>
                 <td className="px-6 py-4">Bold@gmail.com</td>
                 <td className="px-6 py-4">99657582</td>
                 <td className="px-6 py-4">

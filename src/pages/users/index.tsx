@@ -59,43 +59,7 @@ const Users = () => {
             <tbody>
               <tr className="bg-slate-200">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  1
-                </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />
-                    <FontAwesomeIcon
-                      onClick={() => openDelete()}
-                      icon={faTrash}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-slate-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  2
-                </th>
-                <td className="px-6 py-4">Болд</td>
-                <td className="px-6 py-4">Энхболд</td>
-                <td className="px-6 py-4">Bold@gmail.com</td>
-                <td className="px-6 py-4">99657582</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <FontAwesomeIcon onClick={() => openModal()} icon={faPen} />
-                    <FontAwesomeIcon
-                      onClick={() => openDelete()}
-                      icon={faTrash}
-                    />
-                  </div>
-                </td>
-              </tr>
-              <tr className="bg-slate-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900">
-                  3
+                  user.id
                 </th>
                 <td className="px-6 py-4">Болд</td>
                 <td className="px-6 py-4">Энхболд</td>
