@@ -1,10 +1,16 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 const DropdownMenu = () => {
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
   return (
     <div className="fixed right-0 top-12 z-50">
       <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-max">
         <li>
-          <a className="flex items-center gap-2">
+          <a onClick={handleLogout} className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

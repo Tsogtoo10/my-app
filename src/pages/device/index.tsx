@@ -2,7 +2,7 @@ import Title from "@/components/common/Title";
 import Filter from "@/components/common/Filter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import DeleteComponents from "@/components/DeleteComponents";
+import DeleteComponents from "@/components/common/DeleteComponents";
 import UpdateComponents from "@/components/common/UpdateComponents";
 import { useState } from "react";
 import FilterButton from "@/components/common/FilterButton";
