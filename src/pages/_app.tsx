@@ -1,6 +1,6 @@
-// _app.tsx
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import LayoutContainer from "@/layout/containers/LayoutContainer";
 import LoginLayoutContainer from "@/layout/containers/LoginLayoutContainer";
 
@@ -10,19 +10,15 @@ type Props = {
 };
 
 export default function App({ Component, pageProps }: Props) {
-  const getLayout = Component.getLayout || getDefaultLayout;
+  const router = useRouter();
+  const adminPaths = ["/login"];
+  const path = router.pathname;
+  const isPathAdmin = adminPaths.includes(path);
+  const LayoutComponent = isPathAdmin ? LoginLayoutContainer : LayoutContainer;
 
-  return getLayout(
-    <>
+  return (
+    <LayoutComponent>
       <Component {...pageProps} />
-    </>
+    </LayoutComponent>
   );
-
-  function getDefaultLayout(page: any) {
-    if (page.pathname === "/login") {
-      return <LoginLayoutContainer>{page}</LoginLayoutContainer>;
-    }
-
-    return <LayoutContainer>{page}</LayoutContainer>;
-  }
 }
