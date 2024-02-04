@@ -1,6 +1,57 @@
 import { Transition, Dialog } from "@headlessui/react";
 import { Fragment } from "react";
-const DeleteComponents = ({ show, onClose }: any) => {
+import axios from "axios";
+import { Toaster, toast } from "sonner";
+const DeleteComponents = ({ show, onClose, deleteData, type }: any) => {
+  const handleDelete = () => {
+    const token = localStorage.getItem("token");
+    if (type === "user") {
+      axios
+        .delete(`http://localhost:3030/user/${deleteData.id}/delete`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          toast.success("Хэрэглэгчийг амжилттай устгалаа");
+          onClose();
+        })
+        .catch((error) => {
+          toast.error("Хэрэглэгчийг устгахад алдаа гарлаа!!!");
+        });
+    } else if (type === "organization") {
+      axios
+        .delete(`http://localhost:3030/organizations/${deleteData.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          toast.success("Байгууллагыг амжилттай устгалаа");
+          onClose();
+        })
+        .catch((error) => {
+          toast.error("Байгууллагыг устгахад алдаа гарлаа!!!");
+        });
+    } else if (type === "device") {
+      axios
+        .delete(`http://localhost:3030/devices/${deleteData.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          toast.success("Төхөөрөмжийг амжилттай устгалаа");
+          onClose();
+        })
+        .catch((error) => {
+          toast.error("Төхөөрөмжийг устгахад алдаа гарлаа!!!");
+        });
+    }
+  };
   return (
     <Transition appear show={show} as={Fragment}>
       <Dialog as="div" className="relative z-50 mt-20" onClose={onClose}>
@@ -18,7 +69,7 @@ const DeleteComponents = ({ show, onClose }: any) => {
         <div className="fixed inset-0 overflow-y-auto">
           <div className="flex items-center justify-center p-4 text-center">
             <Transition.Child
-              as="div"
+              as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
@@ -27,6 +78,7 @@ const DeleteComponents = ({ show, onClose }: any) => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="w-full max-w-6xl transform overflow-hidden rounded-2xl bg-[#070a18] p-3">
+                <Toaster richColors position="top-center" />
                 <div className="flex">
                   <div className="flex flex-col gap-5 w-full">
                     <h1 className="text-white">
@@ -42,7 +94,7 @@ const DeleteComponents = ({ show, onClose }: any) => {
                       </button>
                       <button
                         type="button"
-                        onClick={() => onClose()}
+                        onClick={handleDelete}
                         className="inline-flex justify-center rounded-md border-2 border-solid border-green-200 text-white px-3 py-1"
                       >
                         Тийм

@@ -6,35 +6,28 @@ import DeleteComponents from "@/components/common/DeleteComponents";
 import UpdateComponents from "@/components/common/UpdateComponents";
 import AddComponents from "@/components/common/AddComponents";
 import { useState, useEffect } from "react";
-import FilterButton from "@/components/common/FilterButton";
 import ActionButton from "@/components/common/ActionButton";
 import axios from "axios";
 import dayjs from "dayjs";
-import useSWR, { mutate } from "swr";
-interface User {
-  id: number;
-  lastName: string;
-  firstName: string;
-  age: number;
-  email: string;
-  gender: string;
-  phone: string;
-  password: string;
-  createdDate: string;
-}
+import useSWR from "swr";
 const fetchUsers = async () => {
-  const response = await axios.get("http://localhost:3030/users");
+  const response = await axios.get(`http://localhost:3030/users`);
   return response.data.data;
 };
+
 const Users = () => {
   let [isOpen, setIsOpen] = useState(false);
   let [isDelete, setIsDelete] = useState(false);
-  const { data: users, mutate: mutateUsers } = useSWR("users", fetchUsers);
-
-  function openModal() {
+  let [selectedUser, setSelectedUser] = useState(null);
+  const { data: users, mutate: mutateUsers } = useSWR(["users"], () =>
+    fetchUsers()
+  );
+  function openModal(user: any) {
+    setSelectedUser(user);
     setIsOpen(true);
   }
-  function openDelete() {
+  function openDelete(user: any) {
+    setSelectedUser(user);
     setIsDelete(true);
   }
   function closeModal() {
@@ -50,19 +43,23 @@ const Users = () => {
   function closeAdd() {
     setIsAdd(false);
   }
+  const [filters, setFilters] = useState<Record<string, string>>({});
 
+  const handleFilterClick = (newFilters: Record<string, string>) => {
+    console.log("New Filters:", newFilters);
+    setFilters(newFilters);
+  };
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("http://localhost:3030/users");
+    axios
+      .get(`http://localhost:3030/users`, { params: filters })
+      .then((response) => {
         mutateUsers(response.data.data, false);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
+      })
+      .catch((error) => {
+        console.error("Error fetching filtered users:", error);
+      });
+  }, [filters, mutateUsers]);
 
-    fetchUsers();
-  }, [mutateUsers]);
   return (
     <div className="px-5 py-5">
       <div className="flex items-center justify-between">
@@ -73,14 +70,14 @@ const Users = () => {
           onClick={() => openAdd()}
         />
       </div>
-      <AddComponents show={isAdd} onClose={closeAdd} />
+      <AddComponents show={isAdd} onClose={closeAdd} type="user" />
 
       <div className="bg-white p-5 mt-5 rounded-lg">
         <Filter
-          label={["Овог", "Нэр", "И-мэйл хаяг", "Утасны дугаар"]}
-          type={["text", "text", "email", "number"]}
+          label={["last_name", "first_name", "age", "email", "phone"]}
+          type={["text", "text", "number", "email", "number"]}
+          onFilterClick={handleFilterClick}
         />
-        <FilterButton />
 
         <div className="relative overflow-x-auto mt-3">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 rounded-lg">
@@ -141,11 +138,11 @@ const Users = () => {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon
-                        onClick={() => openModal()}
+                        onClick={() => openModal(user)}
                         icon={faPen}
                       />
                       <FontAwesomeIcon
-                        onClick={() => openDelete()}
+                        onClick={() => openDelete(user)}
                         icon={faTrash}
                       />
                     </div>
@@ -154,8 +151,18 @@ const Users = () => {
               ))}
             </tbody>
           </table>
-          <DeleteComponents show={isDelete} onClose={closeDelete} />
-          <UpdateComponents show={isOpen} onClose={closeModal} />
+          <DeleteComponents
+            show={isDelete}
+            onClose={closeDelete}
+            deleteData={selectedUser}
+            type="user"
+          />
+          <UpdateComponents
+            show={isOpen}
+            onClose={closeModal}
+            updateData={selectedUser}
+            type="user"
+          />
         </div>
       </div>
     </div>
